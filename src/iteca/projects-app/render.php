@@ -51,6 +51,8 @@ class Render
                 break;
             case 'users':
                 require BASE_URL . '/layout/table.php';
+            case 'register':
+                require BASE_URL . '/layout/register.php';
             default:
                 require BASE_URL . '/layout/content.php';
         } 

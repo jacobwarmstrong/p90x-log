@@ -15,5 +15,5 @@ var_dump($loginInfo->getCookie());
 $extra = [ "cookies" => [$loginInfo->getCookie()] ];
 
 if($loginInfo->isAuthenticated) {
-    redirect('/projects', $extra);
+    redirect('/dashboard', $extra);
 }

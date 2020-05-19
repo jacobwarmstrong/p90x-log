@@ -30,7 +30,7 @@ class Route
     {
         $instance = new self();
         $instance->fillPropertiesWith($string);
-        $instance->checkUser();
+        //$instance->checkUser();
         return $instance;
     }
     
@@ -46,7 +46,7 @@ class Route
     public function checkUser()
     {
         $authenticator = new Authenticator();
-        if ($this->className != 'login') {
+        if ($this->className != 'login' && $this->className != 'register') {
             $authenticator->requireAuth();
         }
     }
@@ -64,9 +64,9 @@ class Route
     public function getView($className) 
     {
         switch ($className) {
-            case 'projects':
-            case 'maintenance':
-            case 'tasks':
+            case 'workouts':
+            case 'workout':
+            case 'my-account':
                 return 'sidebar';
                 break;
             default:

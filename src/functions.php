@@ -86,3 +86,51 @@ function getCoordinates($address) {
    */
     return $coordinates;
 }
+
+function parsePhone($phone) {
+    return str_replace('-','',$phone);
+}
+
+function createUser($email, $password) {
+    global $db;
+    
+    try {
+        $query = 'INSERT INTO users (email, password) VALUES (:email, :password)';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+        return findUserByEmail($email);
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
+function decodeJwt($prop = null) {
+    \Firebase\JWT\JWT::$leeway = 1;
+    $jwt = \Firebase\JWT\JWT::decode(
+        request()->cookies->get('access_token'),
+        getenv('SECRET_KEY'),
+        ['HS256']
+    );
+    
+    if ($prop === null) {
+        return $jwt;
+    }
+    
+    return $jwt->{$prop};
+}
+
+function findUserByEmail($email) {
+    global $db;
+    
+    try {
+        $query = 'SELECT * FROM users WHERE email = :email';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}

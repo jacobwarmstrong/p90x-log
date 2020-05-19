@@ -11,13 +11,13 @@ if($authenticator->isAuthenticated()) {
 }
 ?>
 
-<h1>Projects App</h1>
+<h1>P90X Log</h1>
 <nav>
     <ul>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/maintenance">Maintenance</a></li>
-        <li><a href="/tasks">Tasks</a></li>
-        <li><a href="/users">Users</a></li>
+        <li><a href="/workouts">Workout History</a></li>
+        <li><a href="/workout">Workout</a></li>
+        <li><a href="/my-account">My Account</a></li>
         <li><a href="<?php echo $href; ?>"><?php echo $str; ?></a></li>
+        <li><a href="/register">Register</a></li>
     </ul>
 </nav>

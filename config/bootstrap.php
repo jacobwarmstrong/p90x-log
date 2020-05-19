@@ -15,7 +15,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 //create base url CONSTANT variable for sitewide usage, change as necessary
-define('BASE_URL', 'C:\wamp64\www\projects-app');
+define('BASE_URL', 'C:\wamp64\www\p90x-log');
 
 //load our global functions
 require(BASE_URL . '/src/functions.php');
