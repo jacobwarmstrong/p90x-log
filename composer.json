@@ -1,0 +1,20 @@
+{
+    "require": {
+        "firebase/php-jwt": "^5.0",
+        "symfony/http-foundation": "^5.0",
+        "vlucas/phpdotenv": "^4.1",
+        "egeloen/google-map": "^2.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/iteca/projects-app/route.php",
+            "src/iteca/projects-app/render.php",
+            "src/iteca/projects-app/login.php",
+            "src/iteca/projects-app/map-view.php",
+            "src/iteca/projects-app/projects.php",
+            "src/iteca/projects-app/user.php",
+            "src/iteca/projects-app/authenticator.php",
+            "src/iteca/projects-app/database.php"
+        ]
+    }
+}

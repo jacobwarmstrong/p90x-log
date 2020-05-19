@@ -1,0 +1,5 @@
+#ignore our environment variables file
+*.env
+
+#ignore our dependencies folder from composer
+vendor/
