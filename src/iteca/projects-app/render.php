@@ -40,8 +40,8 @@ class Render
     public function getContent($className) 
     {
         switch ($className) {
-            case 'projects':
-                require BASE_URL . '/layout/projects.php';
+            case 'workout':
+                require BASE_URL . '/layout/workouts.php';
                 break;
             case 'maintenance':
                 require BASE_URL . '/layout/maintenance.php';

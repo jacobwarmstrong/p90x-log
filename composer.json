@@ -3,7 +3,8 @@
         "firebase/php-jwt": "^5.0",
         "symfony/http-foundation": "^5.0",
         "vlucas/phpdotenv": "^4.1",
-        "egeloen/google-map": "^2.0"
+        "egeloen/google-map": "^2.0",
+        "symfony/routing": "^5.0"
     },
     "autoload": {
         "classmap": [

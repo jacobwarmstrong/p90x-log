@@ -2,9 +2,8 @@
 use
 Iteca\Projects-App\Database;
     
-class Routines
+class Routine
 {
     public $id;
     public $name;
-    public $moves = [];
 }

@@ -1,27 +1,26 @@
 <?php
-/*
-index.php
-All url requests redirect here and our Route class handles where to go from there.
-*/
 
-//configuration and autoload file of application
-include("config/bootstrap.php");
+//index.php
+//require our bootstrap file to fire up our application
+require('config/bootstrap.php');
 
-//checking out cookie across pages for testing
-var_dump($request->cookies->get('access_token'));
+use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\HttpFoundation\Request;
 
-//get URI to route us to proper view
-$uriString = $request->server->get('REQUEST_URI');
-$data = Route::withURI($uriString);
+//var_dump(Request::createFromGlobals());
+$uri = Request::createFromGlobals()->server->get('REQUEST_URI');
 
-var_dump($uriString);
-var_dump($data);
 
-//header.php
-include("layout/header.php");
-
-//render our content based off router data
-Render::theContentFrom($data);
-
-include("layout/footer.php");
-
+//match routes with incoming requests
+$matcher = new UrlMatcher($routes, $context);
+try {
+    $parameters = $matcher->match($uri);
+    if ( $parameters['class'] != 'login' && $parameters['class'] != 'register') {
+        $authenticator->requireAuth();
+    }
+    var_dump($parameters);
+    include($parameters['view']);
+} catch (\Exception $e) {
+    include('page.php');
+}

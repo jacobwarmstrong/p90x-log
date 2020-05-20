@@ -39,7 +39,7 @@ class Authenticator
 
 
 
-    public function requireAuth($page = "projects") {
+    public function requireAuth() {
         global $session;
 
         if(!$this->isAuthenticated()) {

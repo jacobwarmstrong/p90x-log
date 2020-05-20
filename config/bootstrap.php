@@ -39,3 +39,6 @@ $authenticator = new Authenticator();
 
 //connect to the sql database
 require_once __DIR__ . '/connection.php';
+
+//include routes
+require_once __DIR__ . '/routes.php';

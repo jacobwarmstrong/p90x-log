@@ -48,7 +48,7 @@ class Database
         $query = "";
         //switch action to generate proper query string
         //create props str
-        switch($this->action) {
+        switch( strtoupper($this->action) )  {
             case 'INSERT':
                 $query .= "INSERT INTO {$this->table} ({$this->getPropsString('regular')}) VALUES ({$this->getPropString('binded')})";
                 break;
@@ -66,6 +66,10 @@ class Database
     
     private function getPropsString(String $choice = 'regular') 
     {
+        //if * was passed then pass a * to return all columns
+        if($this->columns === "*") {
+            return '*';
+        }
         //regular properties str
         if($choice == 'regular') {
             return implode(',',$this->columns);
