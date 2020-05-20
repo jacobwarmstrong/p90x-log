@@ -6,7 +6,7 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\HttpFoundation\Request;
 
-$home = new Route('/', ['class' => null, 'view' => 'page.php', 'content' => 'template-parts/content-dashboard.php']);
+$home = new Route('/', ['class' => 'landing', 'view' => 'jumbotron.php']);
 $dashboard = new Route('/dashboard', ['class' => null, 'view' => 'page.php', 'content' => 'template-parts/content-dashboard.php']);
 $workouts = new Route('/workout', ['class' => 'workout', 'view' => 'page.php', 'content' => 'template-parts/content-workouts.php']);
 $login = new Route('/login', ['class' => 'login', 'view' => 'page.php', 'content' => 'template-parts/content-login.php']);

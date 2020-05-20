@@ -11,12 +11,23 @@ use Symfony\Component\HttpFoundation\Request;
 //var_dump(Request::createFromGlobals());
 $uri = Request::createFromGlobals()->server->get('REQUEST_URI');
 
+function is_open_page($page) {
+    switch ($page) {
+        case 'login':
+        case 'register':
+        case 'landing':
+            return true;
+        default :
+            return false;
+    }
+}
+
 
 //match routes with incoming requests
 $matcher = new UrlMatcher($routes, $context);
 try {
     $parameters = $matcher->match($uri);
-    if ( $parameters['class'] != 'login' && $parameters['class'] != 'register') {
+    if ( !is_open_page( $parameters['class'] ) ) {
         $authenticator->requireAuth();
     }
     var_dump($parameters);

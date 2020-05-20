@@ -107,9 +107,10 @@ function createUser($email, $password) {
 }
 
 function decodeJwt($prop = null) {
+    global $request;
     \Firebase\JWT\JWT::$leeway = 1;
     $jwt = \Firebase\JWT\JWT::decode(
-        request()->cookies->get('access_token'),
+        $request->cookies->get('access_token'),
         getenv('SECRET_KEY'),
         ['HS256']
     );
@@ -132,5 +133,34 @@ function findUserByEmail($email) {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (\Exception $e) {
         throw $e;
+    }
+}
+
+function findUserByAccessToken() {
+    global $db;
+    
+    try {
+       $userId = decodeJwt('sub'); 
+    } catch(\Exception $e) {
+        throw $e;
+    }
+    
+    try {
+        $query = 'SELECT * FROM users WHERE userId = :id';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':id', $userId);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
+//check is parameter bag has content for page
+function has_content($parameters) {
+    if ( key_exists( 'content', $parameters ) ) {
+        return true;
+    } else {
+        return false;
     }
 }
