@@ -4,7 +4,7 @@
 
 var_dump($request->server->all());
 
-$users = Database::do('SELECT', $data->className, '*');
+$users = Database::action('SELECT', $data->className, '*');
 var_dump($users);
 die;
 ?>
