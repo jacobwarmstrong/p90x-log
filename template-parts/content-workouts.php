@@ -9,7 +9,7 @@ $workouts = Database::action('SELECT', 'routines', '*');
 <p>Select a workout!</p>
 
 <?php foreach($workouts as $workout) : ?>
-    <a href="#"><?php echo $workout['name']; ?></a>
+    <a href="/workout/<?php echo $workout['slug']; ?>"><?php echo $workout['name']; ?></a>
 <?php endforeach;
 
 //select all moves in backs and biceps and all the columns related to moves

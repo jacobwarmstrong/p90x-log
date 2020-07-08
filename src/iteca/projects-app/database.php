@@ -9,7 +9,7 @@ class Database
     private $columns = [];
     private $filters = [];
     private $stmt;
-    private $debug = true;
+    private $debug = false;
     
     //empty constructor
     function __construct() 
